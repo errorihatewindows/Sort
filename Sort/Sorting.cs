@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sort
 {
     class Sorting
     {
+        private Form1 drawing;
         private int[] Array;
 
-        public Sorting()
+        public Sorting(Form1 form)
         {
+            drawing = form;
         }
 
         //getter
@@ -29,6 +33,23 @@ namespace Sort
             }
             //copy list to array
             Array = shuffling.ToArray();
+        }
+
+        public void BubbleSort()
+        {
+            for(int i = 0; i < Array.Length; i++)
+            {
+                for(int j = Array.Length - 1; j > i; j--)
+                {
+                    if (Array[j] < Array[j - 1])
+                    {
+                        int temp = Array[j];
+                        Array[j] = Array[j - 1];
+                        Array[j - 1] = temp;
+                    }
+                }
+                drawing.Invalidate();
+            }
         }
 
     }
