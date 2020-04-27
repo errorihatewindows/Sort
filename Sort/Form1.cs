@@ -14,7 +14,6 @@ namespace Sort
     public partial class Form1 : Form
     {
         int counter = 0;
-        int[] lastArray;
         private Sorting sorting;
         public Form1()
         {
@@ -49,10 +48,14 @@ namespace Sort
         private void Form1_Shown(object sender, EventArgs e)
         {
             sorting.generateArray(800);
-            lastArray = null;
             Invalidate();
             sorting.BubbleSort();
             Invalidate();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

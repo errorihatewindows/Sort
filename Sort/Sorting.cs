@@ -18,10 +18,10 @@ namespace Sort
         {
             drawing = form;
         }
-
         //getter
         public int[] get_Array() { return Array; }
 
+        //functions of the sorting framework
         public void generateArray(int size)
         {
             Random rand = new Random();
@@ -35,7 +35,9 @@ namespace Sort
             //copy list to array
             Array = shuffling.ToArray();
         }
-
+        //--------------------------------------------------------------------------
+        //sorting algorithms
+        //--------------------------------------------------------------------------
         public void BubbleSort()
         {
             for (int i = 0; i < Array.Length; i++)
