@@ -13,17 +13,14 @@ namespace Sort
     public partial class Form1 : Form
     {
         int[] testarray = new int[800];
-
+        private Sorting sorting;
         public Form1()
         {
             InitializeComponent();
             DoubleBuffered = true;
 
-            Random zufall = new Random();
-
-            for (int i = 0; i < testarray.Length; i++)
-                testarray[i] = zufall.Next(1, 801);
-
+            sorting = new Sorting();
+            sorting.generateArray(800);
         }
 
         public void DrawArray(int[] array, Graphics e)
@@ -34,7 +31,7 @@ namespace Sort
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            DrawArray(testarray, e.Graphics);
+            DrawArray(sorting.get_Array(), e.Graphics);
         }
     }
 }

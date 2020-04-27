@@ -12,11 +12,6 @@ namespace Sort
 
         public Sorting()
         {
-            generateArray(50);
-            foreach (int number in Array)
-            {
-                Console.WriteLine(number);
-            }
         }
 
         //getter
