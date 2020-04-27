@@ -25,13 +25,13 @@ namespace Sort
 
         public void DrawArray(int[] array, Graphics e)
         {
-            for(int i = 0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
                 e.DrawLine(Pens.Black, i, Height, i, Height - array[i]);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             DrawArray(sorting.get_Array(), e.Graphics);
-        }
+        } 
     }
 }
