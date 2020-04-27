@@ -26,7 +26,7 @@ namespace Sort
         public void DrawArray(int[] array, Graphics e)
         {
             for (int i = 0; i < array.Length; i++)
-                e.DrawLine(Pens.Black, i, (Height - 37), i, (Height - 37) - array[i]);
+                e.DrawLine(Pens.White, i, (Height - 37), i, (Height - 37) - array[i]);
 
         }
 
