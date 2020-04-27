@@ -13,6 +13,7 @@ namespace Sort
 {
     public partial class Form1 : Form
     {
+        int counter = 0;
         int[] lastArray;
         private Sorting sorting;
         public Form1()
@@ -23,38 +24,26 @@ namespace Sort
             sorting = new Sorting(this);
         }
 
-        public void DrawArray(int[] array, Graphics e)
+        private void DrawArray(int[] array, Graphics e)
         {
             for (int i = 0; i < array.Length; i++)
                 e.DrawLine(Pens.Black, i, (Height - 40), i, (Height - 40) - array[i]);
-            for (int i = 0; i < sorting.get_Array().Length; i++) 
-                e.DrawLine(Pens.White, i, (Height - 37), i, (Height - 37) - sorting.get_Array()[i]);
+            for (int i = 0; i < array.Length; i++) 
+                e.DrawLine(Pens.White, i, (Height - 37), i, (Height - 37) - array[i]);
         }
 
-        public void Draw_Line(int x, int y, Graphics e)
+        public void draw()
         {
-            //BlackBackground
-            e.DrawLine(Pens.Black, x, 0, x, (Height + 37));
-            //Line
-            e.DrawLine(Pens.White, x, (Height - 37), x, (Height - 37) - y);
+            counter++;
+            if (counter >= 10)
+            {
+                counter = 0;
+                Invalidate();
+            }
         }
-
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            int[] currentArray = sorting.get_Array();
-            //first draw of the sorting cycle
-            if (lastArray == null)
-                DrawArray(sorting.get_Array(), e.Graphics);
-            else
-            {
-                for (int i = 0; i < lastArray.Length; i++)
-                {
-                    if (lastArray[i] != currentArray[i])
-                    {
-                        Draw_Line(i, currentArray[i], e.Graphics);
-                    }
-                }
-            }
+            DrawArray(sorting.get_Array(), e.Graphics);
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -63,6 +52,7 @@ namespace Sort
             lastArray = null;
             Invalidate();
             sorting.BubbleSort();
+            Invalidate();
         }
     }
 }

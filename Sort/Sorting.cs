@@ -47,7 +47,7 @@ namespace Sort
                         int temp = Array[j];
                         Array[j] = Array[j - 1];
                         Array[j - 1] = temp;
-                        drawing.Invalidate();
+                        drawing.draw();
                         Application.DoEvents();
                     }
                 }
