@@ -19,7 +19,7 @@ namespace Sort
             InitializeComponent();
             DoubleBuffered = true;
 
-            sorting = new Sorting();
+            sorting = new Sorting(this);
             sorting.generateArray(800);
         }
 
