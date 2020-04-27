@@ -26,15 +26,30 @@ namespace Sort
         private void DrawArray(int[] array, Graphics e)
         {
             for (int i = 0; i < array.Length; i++)
-                e.DrawLine(Pens.Black, i, (Height - 40), i, (Height - 40) - array[i]);
-            for (int i = 0; i < array.Length; i++) 
+            {
+                e.DrawLine(Pens.Black, i, (Height - 37), i, (Height - 37) - array[i]);
                 e.DrawLine(Pens.LightSkyBlue, i, (Height - 37), i, (Height - 37) - array[i]);
+            }
+
+        }
+
+        public void Array_Finish(int[] array)
+        {
+            Graphics finish = CreateGraphics();
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                finish.DrawLine(Pens.Black, i, (Height - 37), i, (Height - 37) - array[i]);
+                finish.DrawLine(Pens.Green, i, (Height - 37), i, (Height - 37) - array[i]);
+            }
+
+            finish.Dispose();
         }
 
         public void draw()
         {
             counter++;
-            if (counter >= 100)
+            if (counter >= 500)
             {
                 counter = 0;
                 Invalidate();
@@ -51,6 +66,8 @@ namespace Sort
             Invalidate();
             sorting.BubbleSort();
             Invalidate();
+            Application.DoEvents();
+            Array_Finish(sorting.get_Array());
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
