@@ -32,6 +32,11 @@ namespace Sort
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             DrawArray(sorting.get_Array(), e.Graphics);
-        } 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            sorting.BubbleSort();
+        }
     }
 }
