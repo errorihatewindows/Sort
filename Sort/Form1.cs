@@ -49,10 +49,11 @@ namespace Sort
         public void draw()
         {
             counter++;
-            if (counter >= 500)
+            if (counter >= 50)
             {
                 counter = 0;
                 Invalidate();
+                Application.DoEvents();
             }
         }
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -64,7 +65,7 @@ namespace Sort
         {
             sorting.generateArray(800);
             Invalidate();
-            sorting.BubbleSort();
+            sorting.Radix_Sort();
             Invalidate();
             Application.DoEvents();
             Array_Finish(sorting.get_Array());

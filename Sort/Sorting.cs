@@ -6,6 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Drawing.Text;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Sort
 {
@@ -38,7 +41,7 @@ namespace Sort
         //--------------------------------------------------------------------------
         //sorting algorithms
         //--------------------------------------------------------------------------
-        public void BubbleSort()
+        public void Bubble_Sort()
         {
             for (int i = 0; i < Array.Length; i++)
             {
@@ -50,8 +53,47 @@ namespace Sort
                         Array[j] = Array[j - 1];
                         Array[j - 1] = temp;
                         drawing.draw();
-                        Application.DoEvents();
                     }
+                }
+            }
+        }
+
+        public void Radix_Sort()
+        {
+            //initialize empty list array
+            List<int>[] radix = new List<int>[10];
+            for (int i = 0; i < 10; i++)
+            {
+                radix[i] = new List<int>();
+            }
+            //loop through every digit
+            for (int i = 0; i < Math.Log10(Array.Length-1); i++)
+            {
+                //splits into groups
+                foreach (int number in Array)
+                {
+                    string strnum = number.ToString();
+                    //imagine leading 0s
+                    if (strnum.Length <= i) { radix[0].Add(number); }
+                    else    //sort into right list
+                    {
+                        //string indexing has 0 as MSB
+                        int id = strnum.Length - 1 - i;
+                        Console.WriteLine("number: {0}     index: {1}", number, id);
+                        radix[strnum[id]-'0'].Add(number);
+                    }
+                }
+                //write lists into array
+                int index = 0;
+                for (int j = 0; j < 10; j++)
+                {
+                    foreach (int number in radix[j])
+                    {
+                        Array[index] = number;
+                        index++;
+                        drawing.draw();
+                    }
+                    radix[j].Clear();
                 }
             }
         }
