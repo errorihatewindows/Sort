@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,7 @@ namespace Sort
 
         public void BubbleSort()
         {
-            for(int i = 0; i < Array.Length; i++)
+            for (int i = 0; i < Array.Length; i++)
             {
                 for(int j = Array.Length - 1; j > i; j--)
                 {
@@ -46,9 +47,9 @@ namespace Sort
                         int temp = Array[j];
                         Array[j] = Array[j - 1];
                         Array[j - 1] = temp;
+                        drawing.Invalidate();
+                        Application.DoEvents();
                     }
-                    util.wait(1);
-                    drawing.Invalidate();
                 }
             }
         }
