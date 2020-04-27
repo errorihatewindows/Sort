@@ -47,8 +47,9 @@ namespace Sort
                         Array[j] = Array[j - 1];
                         Array[j - 1] = temp;
                     }
+                    util.wait(10);
+                    drawing.Invalidate();
                 }
-                drawing.Invalidate();
             }
         }
 
