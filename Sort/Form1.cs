@@ -29,13 +29,13 @@ namespace Sort
             for (int i = 0; i < array.Length; i++)
                 e.DrawLine(Pens.Black, i, (Height - 40), i, (Height - 40) - array[i]);
             for (int i = 0; i < array.Length; i++) 
-                e.DrawLine(Pens.White, i, (Height - 37), i, (Height - 37) - array[i]);
+                e.DrawLine(Pens.LightSkyBlue, i, (Height - 37), i, (Height - 37) - array[i]);
         }
 
         public void draw()
         {
             counter++;
-            if (counter >= 10)
+            if (counter >= 100)
             {
                 counter = 0;
                 Invalidate();
