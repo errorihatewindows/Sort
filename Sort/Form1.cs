@@ -25,8 +25,9 @@ namespace Sort
 
         public void DrawArray(int[] array, Graphics e)
         {
+            int offset = -40;
             for (int i = 0; i < array.Length; i++)
-                e.DrawLine(Pens.Black, i, Height, i, Height - array[i]);
+                e.DrawLine(Pens.Black, i, Height+offset, i, Height - array[i]+offset);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
