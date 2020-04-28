@@ -65,7 +65,8 @@ namespace Sort
         {
             sorting.generateArray(800);
             Invalidate();
-            sorting.Radix_Sort();
+            Application.DoEvents();
+            sorting.Bogo_Sort();
             Invalidate();
             Application.DoEvents();
             Array_Finish(sorting.get_Array());

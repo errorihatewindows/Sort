@@ -38,6 +38,13 @@ namespace Sort
             //copy list to array
             Array = shuffling.ToArray();
         }
+        //private functions for sorting
+        private void swap(int i1, int i2)
+        {
+            int temp = Array[i1];
+            Array[i1] = Array[i2];
+            Array[i2] = temp;
+        }
         //--------------------------------------------------------------------------
         //sorting algorithms
         //--------------------------------------------------------------------------
@@ -79,7 +86,6 @@ namespace Sort
                     {
                         //string indexing has 0 as MSB
                         int id = strnum.Length - 1 - i;
-                        Console.WriteLine("number: {0}     index: {1}", number, id);
                         radix[strnum[id]-'0'].Add(number);
                     }
                 }
@@ -95,6 +101,31 @@ namespace Sort
                     }
                     radix[j].Clear();
                 }
+            }//end of outer loop
+        }//end of Radix  Sort
+
+        //---------------------------------------------------------------------------
+        //meme sorts
+        //---------------------------------------------------------------------------
+        private bool is_sorted(int[] Array)
+        {
+            for (int i = 0; i < Array.Length - 1; i++)
+            {
+                if (Array[i] < Array[i + 1]) { return false; }
+            }
+            return true;
+        }
+        public void Bogo_Sort()
+        {
+            Random rand = new Random();
+
+            while (!is_sorted(Array))
+            {
+                int i1 = rand.Next(Array.Length);
+                int i2 = rand.Next(Array.Length);
+
+                swap(i1, i2);
+                drawing.draw();
             }
         }
 
