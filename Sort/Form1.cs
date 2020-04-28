@@ -49,7 +49,7 @@ namespace Sort
         public void draw()
         {
             counter++;
-            if (counter >= 5)
+            if (counter >= 50)
             {
                 counter = 0;
                 Invalidate();

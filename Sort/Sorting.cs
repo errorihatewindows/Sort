@@ -65,6 +65,23 @@ namespace Sort
             }
         }
 
+        public void Shaker_Sort()
+        {
+            //one cycle locks in one left and one right
+            for (int outer = 0; outer < Array.Length/2; outer++)
+            {
+                //sort to left first
+                for (int i = Array.Length - 1 - outer; i > outer; i--)
+                {
+                    if (Array[i] < Array[i - 1]) { swap(i, i - 1); drawing.draw(); }
+                }
+                for (int i = outer; i < Array.Length - 1; i++)
+                {
+                    if (Array[i] > Array[i + 1]) { swap(i, i + 1); drawing.draw(); }
+                }
+            }//end of outer loop
+        }
+
         public void Radix_Sort()
         {
             //initialize empty list array
