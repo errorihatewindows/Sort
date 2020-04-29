@@ -57,9 +57,7 @@ namespace Sort
                 {
                     if (Array[j] < Array[j - 1])
                     {
-                        int temp = Array[j];
-                        Array[j] = Array[j - 1];
-                        Array[j - 1] = temp;
+                        swap(j, j - 1);
                         drawing.draw();
                     }
                 }
