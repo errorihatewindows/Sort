@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Drawing.Text;
 using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel.Design.Serialization;
 
 namespace Sort
 {
@@ -120,6 +121,76 @@ namespace Sort
                 }
             }//end of outer loop
         }//end of Radix  Sort
+
+        public void Heap_Sort()
+        { 
+            //variables
+            int heapsize = 0;   //last index of the heap
+            //create the heap
+            while (heapsize < Array.Length-1)
+            {
+                heapsize++;
+                //rise last elementen until heap is restored
+                int index = heapsize;
+                int parentIndex;
+                while (true)
+                {
+                    //find parent index
+                    if (index%2 == 1) { parentIndex = (index - 1) / 2; }
+                    else              { parentIndex = (index - 2) / 2; }
+                    if (Array[index] > Array[parentIndex])
+                    {
+                        swap(index, parentIndex);
+                        drawing.draw();
+                        index = parentIndex;
+                        //root cannot break heap property
+                        if (index == 0) { break; }
+                    }
+                    //if no swap occured, the rest of the tree stays in heap condition
+                    else { break; }
+                }
+            }
+            //heap created
+            //now build heap back
+            while (heapsize > 0)
+            {  
+                //root is largest number of the heap
+                swap(0, heapsize);
+                drawing.draw();
+                heapsize--;
+                //sink new root until heap property is restored
+                int index = 0;
+                while (true)
+                {
+                    //if index has no children, the heap order is restored
+                    if ((index * 2 + 1) > heapsize) { break; }
+                    //check left child first
+                    if (Array[index] < Array[index * 2 + 1])
+                    {
+                        //swap with left, if there is no right child or left child > right child
+                        if ((index * 2 + 2 > heapsize) || (Array[index * 2 + 1] > Array[index * 2 + 2]))
+                        { 
+                            swap(index, index * 2 + 1);
+                            index = index * 2 + 1;
+                            drawing.draw();
+                        }
+                        else
+                        {
+                            swap(index, index * 2 + 2);
+                            index = index * 2 + 2;
+                            drawing.draw();
+                        }
+                    }//check right child next 
+                    else if (Array[index] < Array[index * 2 + 2] && (index * 2 + 2 <= heapsize))
+                    {
+                        swap(index, index * 2 + 2);
+                        index = index * 2 + 2;
+                        drawing.draw();
+                    }//if neither right nor left child has to be swapped, heap condition is restored
+                    else { break; }
+                }//end of sinking
+            }//end of buildback loop
+        }
 
         //---------------------------------------------------------------------------
         //meme sorts

@@ -49,7 +49,7 @@ namespace Sort
         public void draw()
         {
             counter++;
-            if (counter >= 50)
+            if (counter >= 5)
             {
                 counter = 0;
                 Invalidate();
@@ -66,7 +66,7 @@ namespace Sort
             sorting.generateArray(800);
             Invalidate();
             Application.DoEvents();
-            sorting.Bogo_Sort();
+            sorting.Heap_Sort();
             Invalidate();
             Application.DoEvents();
             Array_Finish(sorting.get_Array());
