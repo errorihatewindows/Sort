@@ -66,7 +66,7 @@ namespace Sort
             sorting.generateArray(800);
             Invalidate();
             Application.DoEvents();
-            sorting.Heap_Sort();
+            sorting.Insert_Sort();
             Invalidate();
             Application.DoEvents();
             Array_Finish(sorting.get_Array());

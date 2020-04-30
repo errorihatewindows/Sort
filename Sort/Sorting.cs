@@ -193,6 +193,29 @@ namespace Sort
             }//end of buildback loop
         }
 
+        public void Insert_Sort()
+        {
+            for (int current = 1; current < Array.Length; current++)
+            {
+                //insert current element to sorted
+                for (int sorted = 0; sorted < current; sorted++)
+                {
+                    if (Array[current] < Array[sorted])
+                    {
+                        int Value = Array[current];
+                        //pushback list elements until insertion spot is reached
+                        for (int pushing = current; pushing > sorted; pushing--)
+                        {
+                            Array[pushing] = Array[pushing - 1];
+                            drawing.draw();
+                        }
+                        Array[sorted] = Value;
+                        drawing.draw();
+                    }
+                }
+            }//outer loop end
+        }
+
         //---------------------------------------------------------------------------
         //meme sorts
         //---------------------------------------------------------------------------
