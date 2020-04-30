@@ -214,6 +214,52 @@ namespace Sort
             }//outer loop end
         }
 
+        public void Merge_Sort()
+        {
+            int[] MergeSort(int[] Array)
+            {
+                //if the array is 1 element long, it is sorted
+                if (Array.Length == 1) { return Array; }
+
+                //split array into 2 subarrays
+                int[] left, right;
+                util.Split(Array, Convert.ToInt32(Array.Length / 2), out left, out right);
+                left = MergeSort(left);
+                right = MergeSort(right);
+
+                //merge arrays together
+                int l = 0;
+                int r = 0;
+                while ((l < left.Length) && (r < right.Length))
+                {
+                    if (left[l] < right[r])
+                    {
+                        Array[l + r] = left[l];
+                        l++;
+                    }
+                    else
+                    {
+                        Array[l + r] = right[r];
+                        r++;
+                    }
+                }
+                //fill the larger set to list
+                while (l < left.Length)
+                {
+                    Array[l + r] = left[l];
+                    l++;
+                }
+                while (r < right.Length)
+                {
+                    Array[l + r] = right[r];
+                    r++;
+                }
+                return Array;
+            }//end of recursion
+
+            Array = MergeSort(Array);
+        }
+
         //---------------------------------------------------------------------------
         //meme sorts
         //---------------------------------------------------------------------------

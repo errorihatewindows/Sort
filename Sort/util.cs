@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Sort
@@ -21,6 +22,11 @@ namespace Sort
             {
                 Application.DoEvents();
             }
+        }
+        public static void Split<T>(T[] array, int index, out T[] first, out T[] second)
+        {
+            first = array.Take(index).ToArray();
+            second = array.Skip(index).ToArray();
         }
     }
 }
