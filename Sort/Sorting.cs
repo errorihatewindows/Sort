@@ -106,6 +106,7 @@ namespace Sort
                         int id = strnum.Length - 1 - i;
                         radix[strnum[id]-'0'].Add(number);
                     }
+                    drawing.draw();
                 }
                 //write lists into array
                 int index = 0;
