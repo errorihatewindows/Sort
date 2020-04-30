@@ -216,48 +216,59 @@ namespace Sort
 
         public void Merge_Sort()
         {
-            int[] MergeSort(int[] Array)
+            //simply calls the recursive mergesort on the current Array
+            MergeSort(0, Array.Length - 1);
+        }
+
+        //recursive MergeSort, called by the public Merge_Sort()
+        private void MergeSort(int left, int right)
+        {
+            //if the array is 1 element long, it is sorted
+            if (left == right) { return; }
+
+            //sort 2 subarrays
+            int middle = Convert.ToInt32((left + right) / 2);
+            MergeSort(left, middle);
+            MergeSort(middle+1,right);
+            //merge arrays together
+            int l = left;
+            int r = middle+1;
+            int tempIndex = 0;
+            int[] temp = new int[right - left + 1];
+            while ((l <= middle) && (r <= right))
             {
-                //if the array is 1 element long, it is sorted
-                if (Array.Length == 1) { return Array; }
-
-                //split array into 2 subarrays
-                int[] left, right;
-                util.Split(Array, Convert.ToInt32(Array.Length / 2), out left, out right);
-                left = MergeSort(left);
-                right = MergeSort(right);
-
-                //merge arrays together
-                int l = 0;
-                int r = 0;
-                while ((l < left.Length) && (r < right.Length))
+                if (Array[l] < Array[r])
                 {
-                    if (left[l] < right[r])
-                    {
-                        Array[l + r] = left[l];
-                        l++;
-                    }
-                    else
-                    {
-                        Array[l + r] = right[r];
-                        r++;
-                    }
-                }
-                //fill the larger set to list
-                while (l < left.Length)
-                {
-                    Array[l + r] = left[l];
+                    temp[tempIndex] = Array[l];
+                    tempIndex++;
                     l++;
                 }
-                while (r < right.Length)
+                else
                 {
-                    Array[l + r] = right[r];
+                    temp[tempIndex] = Array[r];
+                    tempIndex++;
                     r++;
                 }
-                return Array;
-            }//end of recursion
-
-            Array = MergeSort(Array);
+            }
+            //fill the larger set to list
+            while (l <= middle)
+            {
+                temp[tempIndex] = Array[l];
+                tempIndex++;
+                l++;
+            }
+            while (r <= right)
+            {
+                temp[tempIndex] = Array[r];
+                tempIndex++;
+                r++;
+            }
+            //fill temp set into Array
+            for (tempIndex = 0; tempIndex < temp.Length; tempIndex++)
+            {
+                Array[tempIndex + left] = temp[tempIndex];
+                drawing.draw();
+            }
         }
 
         //---------------------------------------------------------------------------
